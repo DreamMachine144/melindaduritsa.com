@@ -47,6 +47,12 @@ body {
   padding: 0;
 }
 
+/* Reserve the scrollbar track so the centered layout does not shift
+   sideways between pages that scroll and pages that do not. */
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: "Questrial", "Open Sans", sans-serif;
   font-size: 14px;
@@ -112,14 +118,6 @@ a:hover {
   background: url("../images/theme/social-icons.png") no-repeat;
 }
 
-.social-icon.twitter {
-  background-position: -32px 0;
-}
-
-.social-icon.twitter:hover {
-  background-position: -32px -30px;
-}
-
 .social-icon.mail {
   background-position: -97px 0;
 }
@@ -146,7 +144,7 @@ a:hover {
 /* Brand + nav */
 .brand-row {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 20px;
   padding-bottom: 35px;
@@ -285,10 +283,6 @@ a:hover {
   display: none;
 }
 
-.inner-page .brand-row {
-  margin-bottom: 24px;
-}
-
 /* Content */
 .content {
   min-height: 400px;
@@ -408,6 +402,10 @@ h2.script {
 
 .contact > * {
   flex: 1 1 50%;
+}
+
+.contact > div > *:first-child {
+  margin-top: 0;
 }
 
 .lead-phone,
@@ -539,7 +537,8 @@ textarea {
 
 /* Footer */
 .footer {
-  padding: 30px 0 38px;
+  padding-top: 30px;
+  padding-bottom: 38px;
   text-align: right;
   color: var(--body);
   font-size: 13px;
@@ -586,6 +585,34 @@ textarea {
   border: 0;
   cursor: pointer;
   line-height: 1;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 60px;
+  color: #fff;
+  font-size: 44px;
+  font-family: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.lightbox-nav:hover {
+  opacity: 1;
+}
+
+.lightbox-prev {
+  left: 18px;
+}
+
+.lightbox-next {
+  right: 18px;
 }
 
 /* Mobile */

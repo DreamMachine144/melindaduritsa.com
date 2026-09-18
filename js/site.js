@@ -10,26 +10,50 @@
 
   var lightbox = document.querySelector(".lightbox");
   var lightboxImg = lightbox && lightbox.querySelector("img");
-  if (lightbox && lightboxImg) {
-    document.querySelectorAll("[data-lightbox]").forEach(function (link) {
+  var lightboxLinks = Array.prototype.slice.call(document.querySelectorAll("[data-lightbox]"));
+  if (lightbox && lightboxImg && lightboxLinks.length) {
+    var current = 0;
+
+    function show(index) {
+      current = (index + lightboxLinks.length) % lightboxLinks.length;
+      var link = lightboxLinks[current];
+      lightboxImg.src = link.getAttribute("href");
+      lightboxImg.alt = link.getAttribute("data-alt") || "";
+    }
+
+    lightboxLinks.forEach(function (link, index) {
       link.addEventListener("click", function (event) {
         event.preventDefault();
-        lightboxImg.src = link.getAttribute("href");
-        lightboxImg.alt = link.getAttribute("data-alt") || "";
+        show(index);
         lightbox.classList.add("is-open");
       });
     });
+
     function closeLightbox() {
       lightbox.classList.remove("is-open");
       lightboxImg.removeAttribute("src");
     }
     lightbox.addEventListener("click", function (event) {
+      if (event.target.closest(".lightbox-prev")) {
+        show(current - 1);
+        return;
+      }
+      if (event.target.closest(".lightbox-next")) {
+        show(current + 1);
+        return;
+      }
       if (event.target === lightbox || event.target.closest(".lightbox-close")) {
         closeLightbox();
       }
     });
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") closeLightbox();
+      if (event.key === "Escape") {
+        closeLightbox();
+        return;
+      }
+      if (!lightbox.classList.contains("is-open")) return;
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
     });
   }
 
