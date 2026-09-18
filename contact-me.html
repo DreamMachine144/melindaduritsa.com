@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>contact me - melinda duritsa</title>
+  <meta name="description" content="Thank you for your interest. For booking and all other inquiries, please feel free to reach out however it is convenient. Phone: 773-456-8568 Email: melinda@melindaduritsa.com">
+  <meta property="og:site_name" content="melinda duritsa">
+  <meta property="og:title" content="contact me">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body class="inner-page">
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="phone" href="tel:7734568568">773-456-8568</a>
+      <div class="social">
+        <a class="social-icon twitter" href="https://twitter.com/melindaduritsa" target="_blank" rel="noopener noreferrer" title="Twitter"><span>Twitter</span></a>
+        <a class="social-icon mail" href="mailto:melinda@melindaduritsa.com" title="Email Melinda"><span>Email</span></a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+    <div class="wrap">
+      <div class="brand-row">
+        <div class="logo">
+          <a href="index.html">melinda duritsa</a>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <ul class="nav" id="site-nav">
+          <li><a href="index.html">home</a></li>
+          <li><a href="contact-me.html" aria-current="page">contact me</a></li>
+          <li><a href="booking-info.html">booking info</a></li>
+        </ul>
+      </div>
+
+      <main class="content contact">
+        <div>
+          <p>Thank you for your interest. For booking and all other inquiries, please feel free to reach out however it is convenient.</p>
+          <p>Phone:</p>
+          <p class="lead-phone"><a href="tel:7734568568">773-456-8568</a></p>
+          <p>Email:</p>
+          <p class="lead-email"><a href="mailto:melinda@melindaduritsa.com">melinda@melindaduritsa.com</a></p>
+          <h2 class="script thanks">-thank you!</h2>
+        </div>
+
+        <div>
+          <p class="form-title">or leave me a message:</p>
+          <!--
+            GitHub Pages cannot process forms. Submissions go to Formspree when
+            js/form-config.js has a formspreeId; otherwise mailto is used.
+            Destination inbox: melinda@melindaduritsa.com (set in Formspree, not here).
+          -->
+          <form id="contact-form" class="contact-form" action="mailto:melinda@melindaduritsa.com" method="post" enctype="text/plain">
+            <input type="hidden" name="name" value="">
+            <input type="hidden" name="_subject" value="Website inquiry from melindaduritsa.com">
+            <div class="hp" aria-hidden="true">
+              <label for="company">Company</label>
+              <input id="company" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="field">
+              <span class="label">Name <span class="req">*</span></span>
+              <div class="name-row">
+                <div>
+                  <input id="first-name" type="text" name="first" required autocomplete="given-name">
+                  <label class="sublabel" for="first-name">First</label>
+                </div>
+                <div>
+                  <input id="last-name" type="text" name="last" required autocomplete="family-name">
+                  <label class="sublabel" for="last-name">Last</label>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req">*</span></label>
+              <input id="email" type="email" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="comment">Comment <span class="req">*</span></label>
+              <textarea id="comment" name="comment" required></textarea>
+            </div>
+            <p id="form-mailto-note" class="form-note">Send opens your email app with this message addressed to Melinda. You can also write her directly at <a href="mailto:melinda@melindaduritsa.com">melinda@melindaduritsa.com</a>.</p>
+            <button class="btn" type="submit">Send</button>
+            <p id="form-status" class="form-status" role="status"></p>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <footer class="footer wrap">
+    <a href="index.html">home</a>
+    <a href="contact-me.html">contact</a>
+    <a href="booking-info.html">booking info</a>
+  </footer>
+
+  <script src="js/form-config.js"></script>
+  <script src="js/site.js"></script>
+</body>
+</html>
