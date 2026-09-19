@@ -30,6 +30,9 @@ def main():
         raise SystemExit('Commit the source changes before preparing release metadata')
     mode=sys.argv[1]
     old_main=git('rev-parse','origin/main').decode().strip()
+    parent=old_main
+    if mode=='source':
+        parent=git('rev-parse','origin/codex/website-audit').decode().strip()
     existing={oid for _,_,oid in records('origin/main')}
     files=[]
     if mode=='public':
@@ -49,7 +52,7 @@ def main():
             try: entry['content']=data.decode('utf-8')
             except UnicodeDecodeError: raise SystemExit('New binary requires reviewed upload: '+name)
         tree.append(entry)
-    print(json.dumps({'expected_main':old_main,'local_source_commit':git('rev-parse','HEAD').decode().strip(),
+    print(json.dumps({'expected_main':old_main,'expected_parent':parent,'local_source_commit':git('rev-parse','HEAD').decode().strip(),
                       'tree_elements':tree},ensure_ascii=True))
 
 if __name__=='__main__': main()
