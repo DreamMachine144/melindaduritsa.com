@@ -1,0 +1,24 @@
+.DS_Store
+Thumbs.db
+Desktop.ini
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+
+_site/
+
+# Owner-requested local strategy and reference material
+/Knowledge Base/
+# Local previews, verification output and tool caches
+/_site*/
+/audit/
+/artifacts/
+/reports/
+/test-results/
+/playwright-report/
+/.cache/
+/.venv/
+/node_modules/
+*.log

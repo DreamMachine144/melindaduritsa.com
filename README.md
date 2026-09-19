@@ -1,159 +1,81 @@
-# melinda duritsa
+# Melinda Duritsa website
 
-Static replica of [www.melindaduritsa.com](https://www.melindaduritsa.com/), a Chicago lifestyle photography site. Plain HTML, CSS, and a little JavaScript, meant to be hosted on **GitHub Pages** under the **DreamMachine144** account, with the custom domain `www.melindaduritsa.com`.
+Website: https://www.melindaduritsa.com/
+Repository: https://github.com/DreamMachine144/melindaduritsa.com
 
-This is not a Weebly export. Copy, photos, and layout are recreated so you can edit the files directly. Weebly scripts and tracking are not included.
+Plain HTML, CSS and small JavaScript files, with local photographs and fonts. No application server, CMS or JavaScript build system is required to run the site.
 
-**Do not change production DNS until you are ready to cut over.** Leave the live Weebly www site as it is until then.
+## Current status
 
-**Intended GitHub home:** [github.com/DreamMachine144](https://github.com/DreamMachine144) — suggested repo name `melindaduritsa.com`, so Pages can publish at `https://dreammachine144.github.io/melindaduritsa.com/` until the custom domain is attached.
+The original Weebly site was recreated as static HTML and is already live on GitHub Pages. HTTPS, the domain and the bare-domain redirect work. Preserve DNS and email configuration.
 
-This working copy is **not** pushed to DreamMachine144 from here. Use the handoff steps below after you have that account.
+The redesign source is on `codex/website-audit`. Production publication was authorized September 19; the release audit records deployed commits and remaining evidence. It adds outdoor-family positioning, edited packages, two useful pages, canonical URLs, sitemap and structured data. The local, gitignored Knowledge Base folder contains the research, pricing strategy, launch notes and current scorecard. Those files remain on this computer; they are not part of a fresh Git clone. Publication is distinct from proving search visibility and booking outcomes.
 
-## Pages
+## Files
 
-| File | URL path | What it is |
-| --- | --- | --- |
-| `index.html` | `/` | Home: intro, banner portrait, six-photo gallery |
-| `contact-me.html` | `/contact-me.html` | Phone, email, contact form |
-| `booking-info.html` | `/booking-info.html` | Packages and rates |
-| `404.html` | (Pages 404) | Simple not-found page |
+| File | Purpose |
+|---|---|
+| `index.html` | Home, work samples, process and inquiry links |
+| `family-photography.html` | Outdoor family experience, six-photo portfolio and questions |
+| `booking-info.html` | Edited collections, prices and booking questions |
+| `about.html` | Melinda's approach and portrait |
+| `contact-me.html` | Inquiry form and direct contact details |
+| `404.html` | Missing-page recovery with root-relative links |
+| `css/site.css` | Responsive layout, typography and focus states |
+| `js/site.js` | Menu, accessible image dialog and inquiry handling |
+| `js/form-config.js` | Public form ID and fallback email; no secrets |
+| `robots.txt`, `sitemap.xml` | Crawl guidance and canonical page list |
+| `images/`, `fonts/` | Original local assets |
+| `Knowledge Base/` | Local, gitignored strategy/reference files and optional photo-selection placeholders; excluded from future Git commits and website release |
+| `scripts/` | Dependency-free public packaging and source checks |
+| `scripts/release_manifest.py` | Prepare an exact public or source Git tree for publication through the GitHub connection |
 
-Navigation matches the original: **home · contact me · booking info**.
+## Local preview
 
-## Preview locally
+Serve the repository over HTTP so root-relative links resolve correctly:
 
-From this folder:
-
-```bash
-python3 -m http.server 43127
+```sh
+python -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open [http://127.0.0.1:43127/](http://127.0.0.1:43127/).
+Open http://127.0.0.1:4173/. Use `python3` if that is the installed executable name. This local server also exposes the Knowledge Base for review; the public packaging step excludes it. Do not serve the repository root on a public interface. Stop the preview server when finished.
 
-## Handoff to DreamMachine144 (you must do this)
+The existing Windows checkout is `C:\Users\ryan\Documents\Coding\MelindaDuritsa website\melindaduritsa-static-site`. It already has valid Git history and the origin remote; do not initialize a replacement repository.
 
-This environment does not have credentials for `github.com/DreamMachine144`. Do not expect a push to that account from this repo. After you are happy with the site:
+## Verify a release
 
-1. On GitHub, signed in as **DreamMachine144**, create a new repository (suggested name: `melindaduritsa.com`). Public is simplest for Pages on a free account.
-2. Add that repo as a remote and push `main` (or merge this branch first):
+```sh
+python scripts/prepare_public.py _site
+python scripts/check_site.py _site
+python -m http.server 4174 --bind 127.0.0.1 --directory _site
+```
 
-   ```bash
-   git remote add dreammachine https://github.com/DreamMachine144/melindaduritsa.com.git
-   git push -u dreammachine main
-   ```
+The packaging script requires a fresh output directory and will not delete an existing one. Choose another output path for subsequent checks or deliberately remove the prior build after verifying the path. `_site/` is ignored by Git.
 
-   If you use GitHub Desktop or the website upload, copy the files in this repo (except `.git`) into that repository instead.
-3. Enable Pages (next section).
-4. Create the Formspree form (contact form section).
-5. Only when the `github.io` preview looks right, change DNS (DNS section). Production DNS is not changed by this project.
-
-## Enable GitHub Pages
-
-The site publishes from the **repository root** (not `/docs`):
-
-- `CNAME` contains `www.melindaduritsa.com`
-- `.nojekyll` tells Pages not to run Jekyll
-
-On **github.com/DreamMachine144/&lt;repo&gt;**:
-
-1. **Settings → Pages**
-2. **Build and deployment → Source:** Deploy from a branch
-3. **Branch:** `main`, folder **`/` (root)**. Save
-4. **Custom domain:** `www.melindaduritsa.com` (the `CNAME` file should fill this in)
-5. After DNS works, check **Enforce HTTPS**
-
-Until the custom domain is live, the site is:
-
-`https://dreammachine144.github.io/melindaduritsa.com/`
-
-(If you named the repo something else, use that name in the path. If you instead create a user site repo named `DreamMachine144.github.io`, the preview is `https://dreammachine144.github.io/` with no extra path — still use the same `CNAME` file.)
-
-### What only DreamMachine144 can do
-
-- Own the GitHub repo and turn on Pages
-- Click through GitHub’s custom-domain / TLS prompts
-- Create the Formspree account and confirm `melinda@melindaduritsa.com`
-- Change DNS at the registrar or Bluehost when ready to cut over
-
-## DNS (when you are ready to cut over)
-
-Do **not** edit these records until Pages looks right at the `github.io` URL.
-
-GitHub Pages should use **www** as the public hostname. Point the apex at GitHub as well (or redirect apex → www).
-
-### www.melindaduritsa.com
-
-| Type | Name / host | Value |
-| --- | --- | --- |
-| `CNAME` | `www` | `dreammachine144.github.io` |
-
-### melindaduritsa.com (apex)
-
-GitHub Pages does not use a CNAME on the apex. Use **A** (and optionally **AAAA**) records:
-
-| Type | Name / host | Value |
-| --- | --- | --- |
-| `A` | `@` | `185.199.108.153` |
-| `A` | `@` | `185.199.109.153` |
-| `A` | `@` | `185.199.110.153` |
-| `A` | `@` | `185.199.111.153` |
-| `AAAA` | `@` | `2606:50c0:8000::153` |
-| `AAAA` | `@` | `2606:50c0:8001::153` |
-| `AAAA` | `@` | `2606:50c0:8002::153` |
-| `AAAA` | `@` | `2606:50c0:8003::153` |
-
-If the DNS host offers **ALIAS** or **ANAME**, you can point `@` at `dreammachine144.github.io` instead of the A records.
-
-Keep **MX** records for email. Only change web A/CNAME records.
-
-After DNS propagates, Pages settings should show the domain as verified. Then enable **Enforce HTTPS**.
-
-### Cutover order
-
-1. Push to DreamMachine144, enable Pages, confirm `https://dreammachine144.github.io/…`
-2. Point **www** at `dreammachine144.github.io`. Leave the apex on the old host if you want a staged cutover.
-3. When www looks good, point the **apex** at GitHub too.
-4. Only then turn off Weebly. Until then, leave live www as it is.
+The checker validates local links/assets, headings, descriptions, canonical URLs, sitemap, entity/offer JSON, removal of the retired offer, and exclusion of non-site files. Check browser layouts, keyboard navigation and actual inbox delivery separately. A local performance measurement is not a real-user Core Web Vitals result.
 
 ## Contact form
 
-GitHub Pages cannot send email. There is no PHP, Weebly, or Bluehost form handler.
+The owner chose to keep email drafts on September 19. Formspree is optional and its ID is currently empty. The form explicitly prepares an email for the visitor to send in their email application. It must not claim to have delivered a message in this mode. Phone and email links remain available, including without JavaScript.
 
-The form on `contact-me.html` is wired like this:
+To enable direct submission, use an owner-controlled form-service account, verify the recipient inbox, and put only the public form ID in `js/form-config.js`. Check service limits and costs before selecting a plan. The configured UI switches to direct submission automatically. Verify actual receipt and error handling before declaring it operational. No real test inquiry has been sent during local development.
 
-1. **Formspree** (preferred once configured) — posts to `https://formspree.io/f/{id}`
-2. **mailto fallback** — if no Formspree ID is set, Send opens the visitor’s email app addressed to `melinda@melindaduritsa.com`
+Form event hooks are available for a later analytics integration, but no analytics collector is installed. The optional discovery-source question can help attribute real inquiries once delivery is connected. Do not count an email draft or button click as a booking.
 
-### What you must provide (Formspree)
+## Publishing and the Knowledge Base
 
-You need a **Formspree form ID**, not a secret API key in the repo. The destination inbox is configured on Formspree’s site, not in HTML.
+Keep the existing GitHub Pages source (`main`, repository root), domain and HTTPS settings unchanged. The source belongs on `codex/website-audit`; the Knowledge Base remains local and untracked; `main` contains only the checked public artifact. **Never merge the full source branch into main**, because it would also publish source instructions and verification scripts.
 
-1. Sign up at [formspree.io](https://formspree.io)
-2. New form → notification email **`melinda@melindaduritsa.com`** (or another inbox you control)
-3. Confirm that address when Formspree emails you (submissions will not arrive until this is done)
-4. Copy the ID from the form endpoint, e.g. `https://formspree.io/f/xpzgkqyz` → `xpzgkqyz`
-5. Paste it in `js/form-config.js`:
+Create a fresh public artifact with `prepare_public.py`, then check it. `release_manifest.py public PATH` prepares an exact Git tree of those public files, reusing unchanged Git objects and including changed text. Use the current remote main as the parent of a release commit and update main without force. The GitHub connection can perform this when shell Git has no authenticated login. Preserve the old main commit as a rollback reference before release. Verify the Pages deployment and live URLs before reporting publication success.
 
-   ```js
-   window.SITE_FORM = {
-     formspreeId: "xpzgkqyz",
-     toEmail: "melinda@melindaduritsa.com"
-   };
-   ```
+`release_manifest.py source` prepares a snapshot of the committed source for backup on the working branch. Local commits retain the detailed editing history; remote source snapshots and public release commits provide additional recovery points. The repository is public, so tracked source-branch files are readable on GitHub. The owner-requested Knowledge Base is gitignored and excluded from new source snapshots; its earlier versions remain only in local Git history until those historical commits are explicitly pushed. Back up that local folder separately if desired. Keep credentials, customer records and private addresses outside Git entirely.
 
-6. Commit and push. No Formspree API key should be committed; the form ID is public in the page source.
+The custom Pages workflow was removed before first publication. No Pages setting change is required for this branch/artifact approach. For rollback, create a new main commit with the prior public tree and the current main as parent; avoid rewriting history or changing DNS.
 
-Until that ID is set, the mailto fallback stays on. Phone and email links on the contact page work either way.
+## Maintenance
 
-## Editing
+Edit the HTML directly. Keep prices, image counts, form choices and structured offers consistent when changing packages. Update the sitemap and public-file list when adding a genuine new page. The site does not require weekly blog posts or recurring dependency upgrades to render.
 
-- Copy: `index.html`, `contact-me.html`, `booking-info.html`
-- Look and layout: `css/site.css`
-- Photos: `images/`
-- Form endpoint: `js/form-config.js`
-- Fonts: `fonts/BlackJack.ttf`, `fonts/questrial-*.woff2`
+Use actual Melinda photographs only. The twelve labeled placeholder files in Knowledge Base are a selection aid, not portfolio content. Keep biographies, service areas, reviews and policies factual. Existing six images are approved for continued use.
 
-## Source of this replica
-
-Rebuilt from the Weebly site that has served as www.melindaduritsa.com (three pages, same nav). Photos are the original uploads. Theme chrome (social sprite, hairline corners, separator) is kept; Weebly JS, GDPR banners, and analytics are not.
+The pre-redesign conversion history remains in Git. It removed Weebly scripts and legacy analytics and introduced local assets; the subsequent redesign builds on that working foundation.
