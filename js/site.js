@@ -132,7 +132,7 @@
     busy = true;
     button.disabled = true;
     form.setAttribute("aria-busy", "true");
-    showStatus("Sending your inquiry…", false);
+    showStatus("Sending your message…", false);
     var controller = new AbortController();
     var timer = setTimeout(function () {
       controller.abort();
@@ -147,7 +147,7 @@
       if (!response.ok) throw new Error("Rejected");
       form.reset();
       showStatus(
-        "Thanks—your inquiry has been sent. Melinda will be in touch.",
+        "Thanks—your message has been sent. Melinda will be in touch.",
         false,
       );
       // Service acceptance is measurable, but inbox delivery still requires verification.
