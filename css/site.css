@@ -870,29 +870,3 @@ textarea::placeholder {
     scroll-behavior: auto;
   }
 }
-
-#email-copy-fallback {
-  margin-top: 22px;
-}
-#email-copy-fallback summary {
-  color: var(--accent);
-  cursor: pointer;
-  padding-block: 10px;
-}
-#email-copy-fallback label {
-  display: block;
-  margin-bottom: 8px;
-}
-.text-button {
-  background: transparent;
-  border: 0;
-  color: var(--accent);
-  font-size: 16px;
-  font-weight: 400;
-  font-synthesis: none;
-  min-height: 44px;
-  padding: 8px 0;
-}
-.text-button:hover {
-  color: #104e70;
-}

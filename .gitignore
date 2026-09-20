@@ -22,3 +22,6 @@ _site/
 /.venv/
 /node_modules/
 *.log
+
+# Temporary checked publication artifacts
+/_release/

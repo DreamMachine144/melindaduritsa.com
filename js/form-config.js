@@ -1,9 +1,6 @@
-/** Public form ID only; never put account credentials or API keys here.
- * Configure a verified destination inbox in Formspree, then copy the ID
- * from https://formspree.io/f/FORM_ID. Confirm receipt with an authorized test.
- * Until connected, the form explicitly prepares an email in the visitor's app.
+/** Public contact settings only. Never add credentials or API keys here.
+ * The native POST endpoint is set in contact-me.html so the form also works without JavaScript.
  */
 window.SITE_FORM = {
-  formspreeId: "",
   toEmail: "melinda@melindaduritsa.com",
 };
