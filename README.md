@@ -79,3 +79,7 @@ Edit the HTML directly. Keep prices, image counts, form choices and structured o
 Use actual Melinda photographs only. The twelve labeled placeholder files in Knowledge Base are a selection aid, not portfolio content. Keep biographies, service areas, reviews and policies factual. Existing six images are approved for continued use.
 
 The pre-redesign conversion history remains in Git. It removed Weebly scripts and legacy analytics and introduced local assets; the subsequent redesign builds on that working foundation.
+
+## Contact form administration
+
+See [FORM-ADMIN.md](FORM-ADMIN.md) for the verified Formspree login email, receiving address, dashboard links, configuration steps and troubleshooting. It contains no passwords and is excluded from the public website. A local copy is also in Knowledge Base/formspree-owner-guide.md.
