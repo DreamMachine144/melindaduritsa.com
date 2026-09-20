@@ -82,4 +82,4 @@ The pre-redesign conversion history remains in Git. It removed Weebly scripts an
 
 ## Contact form administration
 
-See [FORM-ADMIN.md](FORM-ADMIN.md) for the verified Formspree login email, receiving address, dashboard links, configuration steps and troubleshooting. It contains no passwords and is excluded from the public website. A local copy is also in Knowledge Base/formspree-owner-guide.md.
+See [FORM-ADMIN.md](FORM-ADMIN.md) for public maintenance notes. The complete owner guide with account details, management links and troubleshooting is local-only at Knowledge Base/formspree-owner-guide.md. Keep a private backup; the Knowledge Base is gitignored and is not restored by cloning this repository.
