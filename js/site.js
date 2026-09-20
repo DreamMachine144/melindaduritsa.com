@@ -107,73 +107,13 @@
   var form = document.getElementById("contact-form");
   if (!form) return;
   var status = document.getElementById("form-status");
-  var note = document.getElementById("form-mailto-note");
-  var privacy = document.getElementById("form-privacy");
   var button = form.querySelector("button[type=submit]");
   var cfg = window.SITE_FORM || {};
-  var id = String(cfg.formspreeId || "").trim();
-  var ready = /^[A-Za-z0-9]+$/.test(id);
   var toEmail = cfg.toEmail || "melinda@melindaduritsa.com";
   var busy = false;
-  var copyFallback = document.getElementById("email-copy-fallback");
-  var copyText = document.getElementById("inquiry-copy");
-  function inquiryText() {
-    return [
-      ["Name", "name"],
-      ["Email", "email"],
-      ["Session", "session"],
-      ["Preferred area", "location"],
-      ["Preferred timing", "timing"],
-      ["Message", "message"],
-      ["How you found me", "source"],
-    ]
-      .map(function (field) {
-        var input = form.elements[field[1]];
-        var value =
-          input.tagName === "SELECT"
-            ? input.value
-              ? input.options[input.selectedIndex].text
-              : ""
-            : input.value.trim();
-        return field[0] + ": " + value;
-      })
-      .join("\n\n");
-  }
-  function updateCopy() {
-    if (copyFallback && copyFallback.open) {
-      copyText.value =
-        "To: " +
-        toEmail +
-        "\nSubject: Outdoor family photography inquiry\n\n" +
-        inquiryText();
-    }
-  }
-  if (copyFallback && copyText) {
-    copyFallback.hidden = ready;
-    copyFallback.addEventListener("toggle", updateCopy);
-    form.addEventListener("input", updateCopy);
-    document
-      .getElementById("select-inquiry")
-      .addEventListener("click", function () {
-        updateCopy();
-        copyText.focus();
-        copyText.select();
-      });
-  }
   var session = new URLSearchParams(window.location.search).get("session");
   if (["30-minute", "60-minute"].includes(session))
     form.elements.session.value = session;
-  form.hidden = false;
-  // Prevent an accidental GET of personal details if the handler is changed later.
-  form.method = "post";
-  form.action = ready ? "https://formspree.io/f/" + id : "mailto:" + toEmail;
-  if (ready) {
-    note.textContent =
-      "Send your inquiry here. Melinda will reply by email to discuss the details.";
-    button.textContent = "Send session inquiry ↗";
-    privacy.textContent =
-      "Your details are used to respond to this inquiry. Formspree processes this form to deliver your message. Please don’t include sensitive personal information.";
-  }
   function showStatus(message, error) {
     status.textContent = message;
     status.classList.toggle("is-error", !!error);
@@ -187,24 +127,6 @@
       !form.elements.message.value.trim()
     ) {
       showStatus("Please add your name and a short message.", true);
-      return;
-    }
-    if (!ready) {
-      var body = inquiryText();
-      window.location.href =
-        "mailto:" +
-        toEmail +
-        "?subject=" +
-        encodeURIComponent("Outdoor family photography inquiry") +
-        "&body=" +
-        encodeURIComponent(body);
-      showStatus(
-        "Your email draft should open. Please send it from your email app to complete your inquiry. If it does not open, email " +
-          toEmail +
-          " or use the copy option below. You can also call 773-456-8568.",
-        false,
-      );
-      track("email-draft-requested");
       return;
     }
     busy = true;
@@ -225,7 +147,7 @@
       if (!response.ok) throw new Error("Rejected");
       form.reset();
       showStatus(
-        "Thank you. Your inquiry has been submitted. Melinda will reply by email to discuss your session; a date is not reserved yet.",
+        "Thanks—your inquiry has been sent. Melinda will be in touch.",
         false,
       );
       // Service acceptance is measurable, but inbox delivery still requires verification.

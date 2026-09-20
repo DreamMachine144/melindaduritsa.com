@@ -175,17 +175,7 @@
         </aside>
         <div>
           <h2>Your session inquiry</h2>
-          <p id="form-mailto-note" class="form-note">
-            This form prepares an email. You’ll review and send it in your email
-            app, or you can use the email address above.
-          </p>
-          <noscript
-            ><p>
-              The form needs JavaScript to prepare your message. Please email or
-              call Melinda using the contact details on this page.
-            </p></noscript
-          >
-          <form id="contact-form" hidden>
+          <form id="contact-form" method="POST" action="https://formspree.io/f/xqpapeov">
             <input
               type="hidden"
               name="_subject"
@@ -278,35 +268,16 @@
               </select>
             </div>
             <p class="fine" id="form-privacy">
-              Your details are used to respond to this inquiry. Please don’t
-              include sensitive personal information.
+              Your details are used to respond to your inquiry. Delivered securely
+              through <a href="https://formspree.io/legal/privacy-policy/">Formspree</a>.
             </p>
             <button
               class="button"
               type="submit"
-              aria-describedby="form-mailto-note form-privacy"
+              aria-describedby="form-privacy"
             >
-              Prepare email inquiry <span aria-hidden="true">↗</span>
+              Send inquiry <span aria-hidden="true">↗</span>
             </button>
-            <details id="email-copy-fallback" hidden>
-              <summary>Prefer to copy your inquiry into an email?</summary>
-              <p>
-                If your email app doesn’t open, or the draft looks incomplete,
-                copy the text below into an email. Send it from your email
-                account to complete your inquiry.
-              </p>
-              <p>
-                <a href="mailto:melinda@melindaduritsa.com"
-                  >Email Melinda: melinda@melindaduritsa.com
-                  <span aria-hidden="true">↗</span></a
-                >
-              </p>
-              <label for="inquiry-copy">Your inquiry text</label>
-              <textarea id="inquiry-copy" rows="8" readonly></textarea>
-              <button type="button" class="text-button" id="select-inquiry">
-                Select all text
-              </button>
-            </details>
             <p
               id="form-status"
               role="status"
